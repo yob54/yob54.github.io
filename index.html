@@ -20,10 +20,10 @@
             width: 8px;
         }
         body::-webkit-scrollbar-track {
-            background: #fdfcf9; /* Light background */
+            background: #ffffff; /* White background */
         }
         body::-webkit-scrollbar-thumb {
-            background-color: #d1d5db; /* Gray scrollbar thumb */
+            background-color: #a7f3d0; /* Light green scrollbar thumb */
             border-radius: 4px;
         }
 
@@ -32,35 +32,47 @@
             scroll-behavior: smooth;
         }
         
-        /* Custom background color to match the aesthetic */
-        .bg-fdfcf9 {
-            background-color: #fdfcf9;
+        /* Custom hero section background for a clean look */
+        .hero-bg-gradient {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+        }
+
+        /* Custom CSS to control the mobile menu display reliably */
+        #mobile-menu {
+            display: none;
+            /* Added transition for a smooth open/close animation */
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        #mobile-menu.is-open {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-fdfcf9 text-zinc-800 font-inter">
+<body class="bg-white text-zinc-800 font-inter">
 
     <!-- Header & Navigation -->
-    <header class="bg-fdfcf9 sticky top-0 z-50 border-b border-stone-200 shadow-sm">
+    <header class="bg-white sticky top-0 z-50 border-b border-green-200 shadow-sm">
         <nav class="container mx-auto p-6 flex justify-between items-center">
             <a href="#home" class="text-3xl font-bold font-playfair text-emerald-700">Sister's Cafe</a>
-            <!-- Desktop menu is hidden on mobile and visible on medium screens and up -->
-            <div class="hidden md:flex space-x-8 text-lg font-medium">
-                <a href="#menu" class="hover:text-emerald-700 transition-colors duration-300">Menu</a>
-                <a href="#coffee" class="hover:text-emerald-700 transition-colors duration-300">Coffee</a>
-                <a href="#tea" class="hover:text-emerald-700 transition-colors duration-300">Tea</a>
-                <a href="#pastries" class="hover:text-emerald-700 transition-colors duration-300">Pastries</a>
-            </div>
-            <!-- Mobile menu button is visible on mobile and hidden on medium screens and up -->
-            <button id="mobile-menu-button" class="md:hidden text-zinc-800 focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            
+            <!-- Mobile menu button is now the only navigation trigger -->
+            <button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" class="text-zinc-800 focus:outline-none">
+                <!-- Hamburger icon -->
+                <svg id="hamburger-icon" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
         </nav>
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-fdfcf9 w-full text-center py-4 space-y-3 border-t border-stone-200 transition-all duration-300 ease-in-out">
-            <a href="#menu" class="block py-2 hover:text-emerald-700 transition-colors duration-300 text-lg">Menu</a>
+        <div id="mobile-menu" class="w-full text-center py-4 space-y-3 border-t border-green-200">
+            <!-- Updated mobile navigation links -->
+            <a href="#pasta" class="block py-2 hover:text-emerald-700 transition-colors duration-300 text-lg">Pasta</a>
+            <a href="#pizza" class="block py-2 hover:text-emerald-700 transition-colors duration-300 text-lg">Pizza</a>
             <a href="#coffee" class="block py-2 hover:text-emerald-700 transition-colors duration-300 text-lg">Coffee</a>
             <a href="#tea" class="block py-2 hover:text-emerald-700 transition-colors duration-300 text-lg">Tea</a>
             <a href="#pastries" class="block py-2 hover:text-emerald-700 transition-colors duration-300 text-lg">Pastries</a>
@@ -69,193 +81,168 @@
 
     <main class="container mx-auto px-6 max-w-4xl">
 
-        <!-- Hero Section with Image -->
-        <section id="home" class="relative overflow-hidden my-8 rounded-xl shadow-lg">
-            <img src="http://googleusercontent.com/file_content/1" 
-                 alt="A hearty breakfast of scrambled eggs and bread on a cafe table." 
-                 class="w-full h-[60vh] md:h-[70vh] object-cover opacity-90">
-            <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-4 bg-white bg-opacity-40">
-                <h1 class="font-playfair text-4xl sm:text-6xl md:text-7xl font-bold mb-4 drop-shadow-lg text-emerald-700">
-                    Sister's Cafe
-                </h1>
-                <p class="text-lg md:text-2xl font-inter font-light max-w-2xl drop-shadow-md text-zinc-800">
-                    Crafted with care, served with a smile.
-                </p>
-            </div>
+        <!-- Updated Hero Section with simple art style -->
+        <section id="home" class="hero-bg-gradient my-8 rounded-xl shadow-lg p-16 text-center h-[60vh] md:h-[70vh] flex flex-col justify-center items-center">
+            <!-- Simple SVG icon representing a coffee cup -->
+            <svg class="h-24 w-24 md:h-32 md:w-32 mb-4 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4m16 0A8 8 0 114 12a8 8 0 0116 0z"></path>
+            </svg>
+            <h1 class="font-playfair text-5xl sm:text-7xl md:text-8xl font-bold mb-4 text-emerald-700">
+                Sister's Cafe
+            </h1>
+            <p class="text-lg md:text-2xl font-inter font-light max-w-2xl text-zinc-800">
+                A simple and elegant dining experience.
+            </p>
         </section>
 
-        <!-- New Main Menu Section -->
-        <section id="menu" class="py-16">
-            <h2 class="text-center text-5xl md:text-6xl font-playfair font-bold text-emerald-700 mb-12">Our Menu</h2>
+        <!-- Main Menu Sections -->
+        
+        <!-- Pasta Section -->
+        <section id="pasta" class="py-16">
+            <h2 class="text-center text-5xl md:text-6xl font-playfair font-bold text-emerald-700 mb-12">Pasta</h2>
+            <div class="space-y-8">
+                <!-- Pasta menu items with smaller fonts -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-4 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
+                    <div class="flex-grow">
+                        <h4 class="text-xl font-inter font-bold">Fettuccine Alfredo Sauce</h4>
+                        <p class="text-zinc-600 text-lg">Creamy fettuccine pasta in a rich and savory Alfredo sauce.</p>
+                    </div>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$11.00</span>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-4 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
+                    <div class="flex-grow">
+                        <h4 class="text-xl font-inter font-bold">Baked Lasagna</h4>
+                        <p class="text-zinc-600 text-lg">Layers of pasta, meat sauce, and cheese, baked to golden perfection.</p>
+                    </div>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$12.00</span>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-4 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
+                    <div class="flex-grow">
+                        <h4 class="text-xl font-inter font-bold">Ravioli</h4>
+                        <p class="text-zinc-600 text-lg">Delicate pasta pockets filled with a savory blend of cheese or meat.</p>
+                    </div>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$11.50</span>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-4 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
+                    <div class="flex-grow">
+                        <h4 class="text-xl font-inter font-bold">Tortellini</h4>
+                        <p class="text-zinc-600 text-lg">Ring-shaped pasta stuffed with a variety of delicious fillings.</p>
+                    </div>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$11.50</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Pizza Section -->
+        <section id="pizza" class="py-16">
+            <!-- Image for Pizza Section -->
+            <div class="w-full h-96 mb-8 rounded-xl overflow-hidden shadow-lg">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrIWJ9kN7Z3ozOMiqUPPoiwaPJGVEcbXiIp3Ed3-P6DhpQng0dBNQnVCxQRnn9NvoS_GorGHeojUPvUKBiQV1UIA2fBJMnfBsNvK5liDmmtHVOWDY8ZpBdx31UO_KfkY4gZwrl9DQ=s1360-w1360-h1020-rw" 
+                    alt="A delicious, freshly baked pizza with various toppings" 
+                    class="w-full h-full object-cover"
+                    onerror="this.src='https://placehold.co/1360x1020/D1FAE5/065F46?text=Pizza+Image'">
+            </div>
             
-            <!-- Pizza Sub-section -->
-            <div id="pizza" class="mb-16">
-                <h3 class="text-3xl font-playfair font-bold text-zinc-800 mb-8">Pizza</h3>
-                <div class="space-y-8">
-                    <!-- Tuna Pizza with background image at 100% opacity -->
-                    <div class="relative rounded-lg overflow-hidden shadow-md">
-                        <!-- Background Image with full opacity -->
-                        <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npm8ceWhSZg_5cO3Cx5zeoT1VDf_P7BjDJ4GehUaovd_BIR-UGRmK4Vl6OTFfCJuTD0Zgy9AzIaBsk1moalsEzhmMapdkvHEsYZjzd8MMta-tUaWQ8Wz0uqs5toJgYLlso5l1W79Q=s1360-w1360-h1020-rw"
-                             alt="A delicious tuna pizza on a table"
-                             class="absolute inset-0 w-full h-full object-cover opacity-100"
-                             onerror="this.style.display='none'">
-                        <!-- Content Overlay -->
-                        <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center p-4 rounded-lg text-white">
-                            <div class="flex-grow">
-                                <h4 class="text-2xl font-inter font-bold">Tuna Pizza</h4>
-                                <p class="text-white/90">A delicious pizza topped with fresh tuna and savory ingredients.</p>
-                            </div>
-                            <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$12.00</span>
-                        </div>
+            <h2 class="text-center text-5xl md:text-6xl font-playfair font-bold text-emerald-700 mb-12">Pizza</h2>
+            <div class="space-y-8">
+                <!-- Pizza menu items -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-4 p-4 rounded-lg transition-colors duration-300 hover:bg-green-50">
+                    <div class="flex-grow">
+                        <h4 class="text-xl font-inter font-bold">Tuna Pizza</h4>
+                        <p class="text-zinc-600 text-lg">A delicious pizza topped with fresh tuna and savory ingredients.</p>
                     </div>
-                    <!-- Other Pizza items -->
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 p-4 rounded-lg transition-colors duration-300 hover:bg-stone-100">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Veggie Pizza</h4>
-                            <p class="text-zinc-600">A healthy and flavorful pizza loaded with fresh vegetables.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$12.00</span>
-                    </div>
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 p-4 rounded-lg transition-colors duration-300 hover:bg-stone-100">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Special Pizza</h4>
-                            <p class="text-zinc-600">Our chef's special creation with a unique blend of toppings.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$13.50</span>
-                    </div>
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 p-4 rounded-lg transition-colors duration-300 hover:bg-stone-100">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Calzone Pizza</h4>
-                            <p class="text-zinc-600">A folded pizza crust filled with cheese, sauce, and your favorite toppings.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$12.50</span>
-                    </div>
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 p-4 rounded-lg transition-colors duration-300 hover:bg-stone-100">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Chicken Pizza</h4>
-                            <p class="text-zinc-600">A classic pizza topped with seasoned chicken pieces.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$13.00</span>
-                    </div>
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 p-4 rounded-lg transition-colors duration-300 hover:bg-stone-100">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Meat Lover Pizza</h4>
-                            <p class="text-zinc-600">A hearty pizza for meat lovers, loaded with a variety of meats.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$14.00</span>
-                    </div>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$12.00</span>
                 </div>
-            </div>
-
-            <!-- Pasta Sub-section -->
-            <div id="pasta" class="mb-16">
-                <h3 class="text-3xl font-playfair font-bold text-zinc-800 mb-8">Pasta</h3>
-                <div class="space-y-8">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Fettuccine Alfredo Sauce</h4>
-                            <p class="text-zinc-600">Creamy fettuccine pasta in a rich and savory Alfredo sauce.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$11.00</span>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-4 p-4 rounded-lg transition-colors duration-300 hover:bg-green-50">
+                    <div class="flex-grow">
+                        <h4 class="text-xl font-inter font-bold">Veggie Pizza</h4>
+                        <p class="text-zinc-600 text-lg">A healthy and flavorful pizza loaded with fresh vegetables.</p>
                     </div>
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Baked Lasagna</h4>
-                            <p class="text-zinc-600">Layers of pasta, meat sauce, and cheese, baked to golden perfection.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$12.00</span>
-                    </div>
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Ravioli</h4>
-                            <p class="text-zinc-600">Delicate pasta pockets filled with a savory blend of cheese or meat.</p>
-                        </div>
-                        <span class="2xl font-playfair font-bold mt-2 md:mt-0">$11.50</span>
-                    </div>
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
-                        <div class="flex-grow">
-                            <h4 class="2xl font-inter font-bold">Tortellini</h4>
-                            <p class="text-zinc-600">Ring-shaped pasta stuffed with a variety of delicious fillings.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$11.50</span>
-                    </div>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$12.00</span>
                 </div>
-            </div>
-
-            <!-- Salad Sub-section -->
-            <div id="salad" class="mb-16">
-                <h3 class="text-3xl font-playfair font-bold text-zinc-800 mb-8">Salad</h3>
-                <div class="space-y-8">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Russian Salad</h4>
-                            <p class="text-zinc-600">A creamy and hearty potato salad with a mix of vegetables.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$9.00</span>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-4 p-4 rounded-lg transition-colors duration-300 hover:bg-green-50">
+                    <div class="flex-grow">
+                        <h4 class="text-xl font-inter font-bold">Special Pizza</h4>
+                        <p class="text-zinc-600 text-lg">Our chef's special creation with a unique blend of toppings.</p>
                     </div>
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Classic Salad</h4>
-                            <p class="text-zinc-600">A simple and fresh salad with crisp greens and a light vinaigrette.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$8.50</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$13.50</span>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-4 p-4 rounded-lg transition-colors duration-300 hover:bg-green-50">
+                    <div class="flex-grow">
+                        <h4 class="text-xl font-inter font-bold">Calzone Pizza</h4>
+                        <p class="text-zinc-600 text-lg">A folded pizza crust filled with cheese, sauce, and your favorite toppings.</p>
                     </div>
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Chicken Salad</h4>
-                            <p class="text-zinc-600">Grilled chicken breast on a bed of fresh greens and vegetables.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$10.00</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$12.50</span>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-4 p-4 rounded-lg transition-colors duration-300 hover:bg-green-50">
+                    <div class="flex-grow">
+                        <h4 class="text-xl font-inter font-bold">Chicken Pizza</h4>
+                        <p class="text-zinc-600 text-lg">A classic pizza topped with seasoned chicken pieces.</p>
                     </div>
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
-                        <div class="flex-grow">
-                            <h4 class="text-2xl font-inter font-bold">Mixed Salad</h4>
-                            <p class="text-zinc-600">A vibrant mix of fresh greens and various vegetables with your choice of dressing.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$9.50</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$13.00</span>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-4 p-4 rounded-lg transition-colors duration-300 hover:bg-green-50">
+                    <div class="flex-grow">
+                        <h4 class="text-xl font-inter font-bold">Meat Lover Pizza</h4>
+                        <p class="text-zinc-600 text-lg">A hearty pizza for meat lovers, loaded with a variety of meats.</p>
                     </div>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$14.00</span>
                 </div>
             </div>
         </section>
 
         <!-- Coffee Section -->
         <section id="coffee" class="py-16">
+            <!-- Image for Coffee Section -->
+            <div class="w-full h-96 mb-8 rounded-xl overflow-hidden shadow-lg">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMDlHxmisA9ixvg-CU3JiCKJFYia4oUg9h44p-I=s1360-w1360-h1020-rw"
+                    alt="A warm and inviting cafe interior with wooden tables and bright lighting" 
+                    class="w-full h-full object-cover"
+                    onerror="this.src='https://placehold.co/1360x1020/D1FAE5/065F46?text=Cafe+Interior+Image'">
+            </div>
             <h2 class="text-center text-5xl md:text-6xl font-playfair font-bold text-emerald-700 mb-12">Coffee</h2>
             <div class="space-y-12">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-8 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-inter font-bold mb-1">Espresso</h3>
+                        <h3 class="text-xl font-inter font-bold mb-1">Espresso</h3>
                         <p class="text-zinc-600 text-lg">A rich, concentrated shot of our signature blend.</p>
                     </div>
-                    <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$3.00</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$3.00</span>
                 </div>
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-8 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-inter font-bold mb-1">Cappuccino</h3>
+                        <h3 class="text-xl font-inter font-bold mb-1">Cappuccino</h3>
                         <p class="text-zinc-600 text-lg">Espresso with a thick layer of frothed milk.</p>
                     </div>
-                    <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$4.50</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$4.50</span>
                 </div>
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-8 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-inter font-bold mb-1">Latte</h3>
+                        <h3 class="text-xl font-inter font-bold mb-1">Latte</h3>
                         <p class="text-zinc-600 text-lg">Smooth espresso with steamed milk and a delicate layer of foam.</p>
                     </div>
-                    <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$4.50</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$4.50</span>
                 </div>
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-8 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-inter font-bold mb-1">Americano</h3>
+                        <h3 class="text-xl font-inter font-bold mb-1">Caramel Macchiato</h3>
+                        <p class="text-zinc-600 text-lg">A layered coffee drink with vanilla syrup, steamed milk, espresso, and caramel drizzle.</p>
+                    </div>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$5.00</span>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-inter font-bold mb-1">Americano</h3>
                         <p class="text-zinc-600 text-lg">Espresso shots topped with hot water for a classic black coffee.</p>
                     </div>
-                    <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$3.50</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$3.50</span>
                 </div>
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-8 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-inter font-bold mb-1">Cold Brew</h3>
+                        <h3 class="text-xl font-inter font-bold mb-1">Cold Brew</h3>
                         <p class="text-zinc-600 text-lg">Slow-steeped coffee for a smooth, low-acidity finish.</p>
                     </div>
-                    <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$5.00</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$5.00</span>
                 </div>
             </div>
         </section>
@@ -264,33 +251,26 @@
         <section id="tea" class="py-16">
             <h2 class="text-center text-5xl md:text-6xl font-playfair font-bold text-emerald-700 mb-12">Tea</h2>
             <div class="space-y-12">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-8 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-inter font-bold mb-1">Earl Grey</h3>
+                        <h3 class="text-xl font-inter font-bold mb-1">Earl Grey</h3>
                         <p class="text-zinc-600 text-lg">A classic black tea with a distinctive bergamot flavor.</p>
                     </div>
-                    <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$3.00</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$3.00</span>
                 </div>
-                <!-- Green Tea with background image at 100% opacity -->
-                <div class="relative rounded-lg overflow-hidden shadow-md">
-                    <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqTftT2IM3h9Xd3mxpO-Tt0TZJK7QiFX7GwRb9TIkegrAYCdt88Dd3SxOxywK7YdsHHNQiODPcwfHNl1RWBUHAm04oQ_IGUxukkbU5umgup8Uu9XiY8nlKJPEE1TsFX60BAK9wyGA=s1360-w1360-h1020-rw"
-                         alt="A refreshing cup of green tea"
-                         class="absolute inset-0 w-full h-full object-cover opacity-100"
-                         onerror="this.style.display='none'">
-                    <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center p-4 rounded-lg text-white">
-                        <div class="flex-grow">
-                            <h3 class="text-2xl font-inter font-bold mb-1">Green Tea</h3>
-                            <p class="text-white/90 text-lg">A delicate and refreshing green tea with a clean finish.</p>
-                        </div>
-                        <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$3.00</span>
-                    </div>
-                </div>
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-8 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-inter font-bold mb-1">Iced Matcha Latte</h3>
+                        <h3 class="text-xl font-inter font-bold mb-1">Green Tea</h3>
+                        <p class="text-zinc-600 text-lg">A delicate and refreshing green tea with a clean finish.</p>
+                    </div>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$3.00</span>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-inter font-bold mb-1">Iced Matcha Latte</h3>
                         <p class="text-zinc-600 text-lg">Ceremonial grade matcha whisked with milk and served over ice.</p>
                     </div>
-                    <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$5.50</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$5.50</span>
                 </div>
             </div>
         </section>
@@ -299,34 +279,44 @@
         <section id="pastries" class="py-16">
             <h2 class="text-center text-5xl md:text-6xl font-playfair font-bold text-emerald-700 mb-12">Pastries</h2>
             <div class="space-y-12">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-8 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-inter font-bold mb-1">Butter Croissant</h3>
+                        <h3 class="text-xl font-inter font-bold mb-1">Butter Croissant</h3>
                         <p class="text-zinc-600 text-lg">A classic, flaky, and buttery French pastry baked fresh every morning.</p>
                     </div>
-                    <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$3.50</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$3.75</span>
                 </div>
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-8 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-inter font-bold mb-1">Chocolate Muffin</h3>
+                        <h3 class="text-xl font-inter font-bold mb-1">Chocolate Muffin</h3>
                         <p class="text-zinc-600 text-lg">A rich, decadent chocolate muffin loaded with semi-sweet chocolate chips.</p>
                     </div>
-                    <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$4.00</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$4.00</span>
                 </div>
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-8 hover:bg-stone-100 p-4 rounded-lg transition-colors duration-300">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-green-200 pb-8 hover:bg-green-50 p-4 rounded-lg transition-colors duration-300">
                     <div class="flex-grow">
-                        <h3 class="text-2xl font-inter font-bold mb-1">Blueberry Scone</h3>
+                        <h3 class="text-xl font-inter font-bold mb-1">Blueberry Scone</h3>
                         <p class="text-zinc-600 text-lg">Moist and tender scone, bursting with fresh blueberries and a light sugar glaze.</p>
                     </div>
-                    <span class="text-2xl font-playfair font-bold mt-2 md:mt-0">$4.00</span>
+                    <span class="text-xl font-playfair font-bold mt-2 md:mt-0">$4.00</span>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-zinc-900 text-stone-300 py-8 mt-16">
+    <footer class="bg-emerald-900 text-emerald-100 py-8 mt-16">
         <div class="container mx-auto text-center font-light">
+            <p>Phone: 091 102 1789</p>
+            <p>Address: Addis Ababa, Ethiopia</p>
+            <div class="mt-4">
+                <h4 class="text-lg font-bold">Our Branches</h4>
+                <ul class="mt-2 space-y-1">
+                    <li>Sisters Cafe | Jomo Branch | እህትማማቾች ካፌ | ጀሞ</li>
+                    <li>Sister’s cafe and restaurant (Ayat 49)</li>
+                    <li>Sisters Cafe and Restaurant | Lebu | ሲስተርስ ካፌ እና ሬስቱራንት | ለቡ</li>
+                </ul>
+            </div>
             <p>&copy; 2024 Sister's Cafe. All Rights Reserved.</p>
         </div>
     </footer>
@@ -336,16 +326,30 @@
         document.addEventListener('DOMContentLoaded', () => {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // Close mobile menu when a link is clicked
             const navLinks = document.querySelectorAll('#mobile-menu a');
+
+            // Function to toggle the menu and the button icon
+            const toggleMenu = () => {
+                const isMenuOpen = mobileMenu.classList.toggle('is-open');
+                mobileMenuButton.setAttribute('aria-expanded', isMenuOpen);
+                
+                // Change the icon from hamburger to 'X' and back
+                const iconPath = isMenuOpen
+                    ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />'
+                    : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />';
+                
+                mobileMenuButton.innerHTML = `<svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">${iconPath}</svg>`;
+            };
+
+            mobileMenuButton.addEventListener('click', toggleMenu);
+
+            // Close the menu when a link is clicked
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
+                    // Check if the menu is open before trying to close it
+                    if (mobileMenu.classList.contains('is-open')) {
+                        toggleMenu();
+                    }
                 });
             });
         });
